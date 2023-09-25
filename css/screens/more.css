@@ -1,0 +1,12 @@
+.more-exclamation {
+  width: 15px;
+  height: 15px;
+  border: 1px solid tomato;
+  color: tomato;
+  font-size: 12px;
+  border-radius: 50%;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  margin-left: 5px;
+}
