@@ -1,6 +1,6 @@
 #chat-screen {
   background-color: #abc1d1;
-  height: 11000vh;
+  height: 100vh;
 }
 
 #chat-screen .alt-header {
@@ -14,11 +14,34 @@
   z-index: 1;
 }
 
+@keyframes fadeIn {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
+}
+
 .main-chat {
-  margin-top: 120px;
+  margin-top: 140px;
   display: flex;
   flex-direction: column;
   align-items: center;
+  animation: fadeIn 0.3s linear;
+}
+
+@keyframes fadeInDown {
+  from {
+    opacity: 0;
+    transform: translateY(-80px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .chat__timestamp {
@@ -28,12 +51,25 @@
   border-radius: 25px;
   font-size: 14px;
   margin-bottom: 25px;
+  animation: fadeInDown 0.3s linear;
+}
+
+@keyframes fadeInRight {
+  from {
+    opacity: 0;
+    transform: translateX(-150px);
+  }
+  to {
+    opacity: 1;
+    transform: none;
+  }
 }
 
 .message-row {
   width: 100%;
   display: flex;
   margin-bottom: 25px;
+  animation: fadeInRight 0.5s ease-in-out;
 }
 
 .message-row img {
@@ -68,8 +104,18 @@
   font-size: 14px;
 }
 
+@keyframes fadeInLeft {
+  from {
+    opacity: 0;
+    transform: translateX(150px);
+  }
+  to {
+    opacity: 1;
+  }
+}
 .message-row--own {
   justify-content: flex-end;
+  animation: fadeInLeft 0.5s ease-in-out forwards;
 }
 
 .message-row--own .message__bubble {
@@ -84,3 +130,107 @@
   flex-direction: row-reverse;
 }
 /* order : flex-chideren에게만 적용됨. 순서를 바꿔줌 */
+
+.reply {
+  position: fixed;
+  bottom: 0;
+  width: 100%;
+  background-color: white;
+  display: flex;
+  justify-content: space-between;
+  padding: 5px 25px;
+  align-items: center;
+  box-sizing: border-box;
+  transition: transform 0.3s ease-in-out;
+}
+
+.reply .reply__column:first-child {
+  width: 10%;
+}
+
+.reply .reply__column:last-child {
+  width: 90%;
+  position: relative;
+}
+
+.reply input {
+  width: 100%;
+  border: var(--border);
+  border-radius: 20px;
+  padding: 14px;
+  box-sizing: border-box;
+  transition: all 0.3s ease-in-out;
+}
+
+/* .reply input::placeholder {
+  padding: 12px;
+} placeholder에 padding을 주면 디자인상 괜찮아보이지만 focus(input에 입력하려고 할 때)엔 padding이 적용되지않음.*/
+
+.reply i {
+  opacity: 0.5;
+}
+
+.reply__column:last-child button i {
+  opacity: 1;
+}
+
+.reply__column:last-child > i,
+.reply__column:last-child button {
+  position: absolute;
+  right: 3px;
+  top: 7px;
+}
+
+.reply__column:last-child > i {
+  right: 45px;
+  top: 22px;
+}
+
+.reply__column:last-child button {
+  background-color: var(--yellow);
+  border: none;
+  width: 30px;
+  height: 30px;
+  border-radius: 50%;
+}
+
+.reply:focus-within .reply__column:first-child {
+  opacity: 0;
+}
+/* focus-within : 해당 태그의 자손태그중 어떤 요소가 focus된다면 스타일 적용  */
+
+.reply:focus-within .reply__column:first-child,
+.reply:focus-within .fa-face-smile,
+.reply:focus-within button {
+  opacity: 0;
+}
+
+/* 해당 예제는 폼 태그내에서 focus된 태그가 있으면 내가 지정한 태그들의 opacity를 0으로 지정함. */
+
+.reply .reply__column:first-child,
+.reply .fa-face-smile,
+.reply button {
+  transition: opacity 0.3s ease-in-out;
+}
+
+/* .reply:focus-within input {
+  width: 96vw;
+  transform: translateX(-13%) translateY(-70px);
+}
+
+/* trasition이 없다면 덜컹거리는 느낌이 있어 변화를 감지하기 쉽지않음, ux적으로 좋지않음. */
+
+/* 어차피 form 태그 내에 input밖에 focus 기능을 안가짐. 따라서
+.reply:focus-within input = input:focus와 동일하며 기능적으로도 맞는 표현이라고 할 수 있음. */
+
+.reply input:focus {
+  width: 96vw;
+  transform: translateX(-13%) translateY(-70px);
+}
+
+.reply:focus-within {
+  transform: translateY(60px);
+}
+
+/* 해당 예제에서 form태그 focus되면 form태그 자체를 60px y축으로 밑으로 내리지만 input태그는 반대방향으로 -70px 움직이게하여
+input태그를 제외한 요소들은 내려가고 input태그는 올라오는 마치 입력창이 올라오는 효과를 만들어낸다.  */

@@ -28,3 +28,35 @@
   justify-content: space-between;
   color: var(--gray-text);
 }
+
+@keyframes hideSplashScreen {
+  from {
+    opacity: 1;
+  }
+  to {
+    opacity: 0;
+    visibility: hidden;
+    /* display : none은 inspect해도 해당 요소가 안뜨게 사라짐 
+       visibility:hidden은 inspect하면 해당요소가 그 자리에 남아있으나 마우스에 걸리지않게 빠지는 것.
+       결국 둘다 HTML 마크업 상에서는 남아있는 것이기 때문에
+       실제로는 javascript를 사용하여 없애주는 것이 표준에 적합하다.*/
+  }
+}
+
+/* 애니메이션 추가하는 문법 연습하기 */
+
+#splash-screen {
+  background-color: var(--yellow);
+  position: absolute;
+  height: 100vh;
+  width: 100vw;
+  top: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-size: 100px;
+  animation: hideSplashScreen 0.3s ease-in-out forwards;
+  /* forwards = 마지막 키프레임의 속성을 기억하도록 함. 여기서는 opacity 0을 기억하게함ㅌ   */
+  animation-delay: 0.8s;
+  /* 애니메이션이 시작되는 시간을 지연시켜줌 = 2초있다가 애니메이션 실행해줌. */
+}

@@ -103,3 +103,39 @@
 .open-post__heart-count span {
   margin-left: 3px;
 }
+
+/* @keyframes heartBeat {
+  0% {
+    transform: none;
+  }
+  50% {
+    transform: scale(1.5);
+  }
+  100% {
+    transform: none;
+  }
+} */
+
+@keyframes heartBeat {
+  0% {
+    color: white;
+    transform: none;
+  }
+  50% {
+    color: tomato;
+    transform: scale(1.5);
+  }
+  /* transform에서 scale이든 무엇이든간에 변화값을 적게 주면 덜컹거리는 느낌이 난다
+  - will-change를 이용하여 브라우저가 애니메이션을 보다 부드럽게 구현할 수 있도록 해줌 (브라우저에게 변화가 일어날 것이라고 알려주는 역할 = 렌더링힌트)
+  그래픽카드를 이용한 애니메이션 가속화 */
+  100% {
+    color: white;
+    transform: none;
+  }
+}
+
+.open-post__heart-count:hover i {
+  will-change: transform;
+  /* 어떠한 속성이 변할 것인지 알려줌. */
+  animation: heartBeat 0.8s linear infinite;
+}

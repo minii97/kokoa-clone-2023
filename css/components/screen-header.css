@@ -20,3 +20,15 @@
   top: -5px;
   right: -5px;
 }
+
+@keyframes rotateCog {
+  from {
+    transform: none;
+  }
+  to {
+    transform: rotateZ(360deg);
+  }
+}
+.screen-header__icon .fa-gear {
+  animation: rotateCog 3s linear infinite;
+}

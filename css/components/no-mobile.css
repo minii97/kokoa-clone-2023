@@ -1,0 +1,46 @@
+#no-mobile {
+  position: absolute;
+  z-index: 99;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+}
+
+/* #no-landscape { 
+  position: absolute;
+  z-index: 99;
+  height: 100vh;
+  width: 100vw;
+  background-color: var(--yellow);
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  top: 0;
+  align-items: center;
+  justify-content: center;
+  font-size: 32px;
+  text-align: center;
+}*/
+
+@media screen and (max-width: 640px) {
+  #no-mobile {
+    display: none;
+    orientation: portrait;
+  }
+}
+/* 아주 중요 ㅎㅎ
+min-width = 이것보다 이상이면 해당 스타일을 적용한다
+max-width = 이 크기보다 이하 일땐 해당 스타일을 적용한다.*/
+
+/* @media screen and (orientation: portrait) { 
+  #no-landscape {
+    display: none;
+  }
+}*/
